@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fancify Shamcify</title>
+		<link rel="stylesheet" href="Style/style.css"></link>
+		<script src="Script/fancifymytext.js" defer></script>
+	</head>
+
+	<body>
+		<h1>Fancify my Text</h1>
+		
+		<!-- The <fieldset> HTML element is used to group several controls as well as labels (<label>) within a web form.-->
+		<fieldset>
+			<!-- The <legend> HTML element represents a caption for the content of its parent <fieldset>.-->
+			<legend>Text:</legend>
+			<textarea id="textarea" name rows="4" cols="30"></textarea>
+		</fieldset>
+
+		<fieldset>
+			<legend>Fancify:</legend>
+			<button onclick="incrementFontSize()">Bigger!</button>
+			<input type="radio" id="FancyShmancy" onchange="fancify()">
+			<label for="FancyShmancy">FancyShmancy</label>
+			<input type="radio" id="BoringBetty" onchange="borify()">
+			<label for="BoringBetty">BoringBetty</label>
+			<button onclick="setUpperCase()">Moo!</button>
+		</fieldset>
+	</body>
+	<a href="https://urieldiaz1.github.io/" title="Home Page">Return Home</a>
+</html>

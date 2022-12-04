@@ -1,0 +1,39 @@
+html {
+    font-family: sans-serif;
+}
+
+body {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  background-color:rgba(10, 10, 10, 0.938);
+  background-size: cover;
+  background-position: center;        
+}
+
+h1 {
+  font-size: 34pt;
+  color: rgb(175, 156, 46);
+}
+
+fieldset {
+  margin-bottom: 20px;
+}
+
+legend {
+  font-weight: bold;
+  color: lightgray;
+  padding: 5px 10px;
+  
+}
+
+label {
+  color: whitesmoke;
+}
+
+a {
+  font-size: 20pt;
+  color: rgba(233, 227, 227, 0.815);
+  text-transform: capitalize;
+  text-decoration: underline;
+}
