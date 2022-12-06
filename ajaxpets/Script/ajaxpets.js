@@ -13,7 +13,7 @@
    * cute pet photos they want to see (they should of course, always pick kittens).
    */
   function init() {
-    let radios = qsa("input[name='animal'");
+    let radios = qsa("input[name='animal']");
 
     for (let i = 0; i < radios.length; i++) {
       radios[i].addEventListener("change", makeRequest);
@@ -26,10 +26,11 @@
    */
   function makeRequest() {
     let animal = this.value;
-    let loadingText = document.createElement("h5");
-    loadingText.id="loading"
-    loadingText.innerText="Loading for Images ...";
+    let loadingText = document.createElement("h2");
+    loadingText.id="loading";
+    loadingText.innerText="Loading for Images...";
     id("pictures").appendChild(loadingText);
+
     fetch(AJAX_PETS_URL + "?animal=" + animal)
       .then(checkStatus)
       .then(splitNewLines)
@@ -52,10 +53,10 @@
      * @param {string[]} imgs - Array of pet image sources as strings.
      */
     function displayPictures(imgs) {
-      document.querySelector("#pictures").removeChild(document.querySelector("#loading"))
+      document.querySelector("#pictures").removeChild(document.querySelector("#loading"));
       clearPictures();
 
-      for (let i = 0; i < imgs.length; i++) {
+      for (let i = 0; i < imgs.length - 1; i++) {
         let imgPath = imgs[i];
         let img = document.createElement("img");
         img.src = imgPath;
@@ -84,16 +85,18 @@
    * @return {object}    - Valid response if response was successful, otherwise rejected
    *                       Promise result.
    */
-  async function checkStatus(res) {
-    if (!res.ok) {
-      throw new Error(await res.text());
+  function checkStatus(res) {
+    if (res.status >= 200 && res.status < 300 || res.status == 0) {
+      return res.text();
+    } 
+    else {
+      return Promise.reject(new Error(res.status + ": " + res.statusText));
     }
-    return res;
   }
 
   /**
    * Returns the element that has the ID attribute with the specified value.
-   * @param {string} id - element ID.
+   * @param {string} id - Element ID.
    * @return {object}   - DOM object associated with id.
    */
   function id(id) {
@@ -112,7 +115,7 @@
   /**
    * Returns the array of elements that match the given CSS selector.
    * @param {string} query - CSS query selector
-   * @returns {object[]} array of DOM objects matching the query.
+   * @returns {object[]}   - Array of DOM objects matching the query.
    */
   function qsa(query) {
     return document.querySelectorAll(query);
