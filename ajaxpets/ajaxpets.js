@@ -3,8 +3,8 @@
  * kitties will be populated on the page after the user selects their desired
  * pet type.
  */
-"use strict";
 (function() {
+  "use strict";
   const AJAX_PETS_URL = "https://courses.cs.washington.edu/courses/cse154/webservices/pets/ajaxpets.php";
   window.addEventListener("load", init);
 
@@ -26,7 +26,10 @@
    */
   function makeRequest() {
     let animal = this.value;
-  
+    let loadingText = document.createElement("h5");
+    loadingText.id="loading"
+    loadingText.innerText="Loading for Images ...";
+    id("pictures").appendChild(loadingText);
     fetch(AJAX_PETS_URL + "?animal=" + animal)
       .then(checkStatus)
       .then(splitNewLines)
@@ -49,6 +52,7 @@
      * @param {string[]} imgs - Array of pet image sources as strings.
      */
     function displayPictures(imgs) {
+      document.querySelector("#pictures").removeChild(document.querySelector("#loading"))
       clearPictures();
 
       for (let i = 0; i < imgs.length; i++) {
@@ -65,7 +69,7 @@
      */
     function clearPictures() {
       let imgs = qsa("#pictures img");
-      
+
       for (let i = 0; i < imgs.length; i++) {
         imgs[i].remove();
       }
