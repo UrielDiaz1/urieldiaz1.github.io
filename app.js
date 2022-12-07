@@ -53,6 +53,7 @@ app.get('/hello/name', (req, res) => {
     }
 });
 
+// The root parameter describes the root directory from which to serve static assets.
 app.use(express.static('public'));
 
 // Uses the environment's port. If none is set, defaults to 8000.
